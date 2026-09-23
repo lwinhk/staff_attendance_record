@@ -1,0 +1,29 @@
+services:
+  postgres:
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+
+  api:
+    build:
+      target: development
+    command: ["pnpm", "--filter", "@attendance/api", "dev"]
+    environment:
+      NODE_ENV: development
+    ports:
+      - "${API_PORT:-3000}:3000"
+    volumes:
+      - .:/workspace
+      - dev_node_modules:/workspace/node_modules
+
+  web:
+    build:
+      target: development
+    command: ["pnpm", "--filter", "@attendance/web", "dev", "--host", "0.0.0.0"]
+    ports:
+      - "${WEB_PORT:-5173}:5173"
+    volumes:
+      - .:/workspace
+      - dev_node_modules:/workspace/node_modules
+
+volumes:
+  dev_node_modules:

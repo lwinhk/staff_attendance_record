@@ -1,0 +1,5 @@
+.dashboard-home { display: grid; gap: 1.5rem; }
+.metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; }
+.metric-grid article { display: grid; gap: .5rem; padding: 1.2rem; border: 1px solid #dce3dd; border-radius: .9rem; background: #fff; box-shadow: 0 10px 30px #284b3b08; }
+.metric-grid span { color: #6f8179; font-size: .78rem; font-weight: 700; }
+.metric-grid strong { font: 500 2.2rem Georgia, serif; }

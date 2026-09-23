@@ -1,0 +1,17 @@
+{
+  "name": "Attendance Platform",
+  "short_name": "Attendance",
+  "description": "Site attendance management for facility and security teams",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f2f5ef",
+  "theme_color": "#173f35",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

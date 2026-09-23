@@ -1,0 +1,12 @@
+services:
+  api:
+    image: ${IMAGE_PREFIX:?IMAGE_PREFIX is required}/api:${RELEASE_TAG:?RELEASE_TAG is required}
+    pull_policy: always
+
+  web:
+    image: ${IMAGE_PREFIX:?IMAGE_PREFIX is required}/web:${RELEASE_TAG:?RELEASE_TAG is required}
+    pull_policy: always
+
+  worker:
+    image: ${IMAGE_PREFIX:?IMAGE_PREFIX is required}/worker:${RELEASE_TAG:?RELEASE_TAG is required}
+    pull_policy: always

@@ -1,0 +1,21 @@
+{
+  "name": "attendance-platform",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@12.4.2",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "pnpm --parallel --filter @attendance/api --filter @attendance/web dev",
+    "dev:api": "pnpm --filter @attendance/api dev",
+    "dev:web": "pnpm --filter @attendance/web dev",
+    "db:migrate": "pnpm --filter @attendance/database migrate",
+    "bootstrap:super-admin": "pnpm --filter @attendance/api bootstrap:super-admin",
+    "build": "pnpm -r build",
+    "typecheck": "pnpm -r typecheck",
+    "lint": "pnpm -r lint",
+    "test": "pnpm -r test",
+    "clean": "pnpm -r clean"
+  }
+}

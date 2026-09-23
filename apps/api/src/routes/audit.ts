@@ -1,0 +1,5 @@
+import type { Pool } from "@attendance/database";
+import { Router } from "express";
+import { z } from "zod";
+import { authenticate,authorize,requireTenant } from "../middleware/auth.js";
+export const createAuditRouter=(database:Pool):Router=>{const router=Router();router.use(authenticate(database),authorize("tenant_admin"));router.get("/",async(request,response,next)=>{try{const tenantId=requireTenant(request);const query=z.object({action:z.string().max(100).optional(),page:z.coerce.number().int().min(1).default(1),limit:z.coerce.number().int().min(1).max(100).default(50)}).parse(request.query);const result=await database.query(`select a.id,a.action,a.entity_type,a.entity_id,a.metadata,a.created_at,u.display_name as actor_name,count(*) over()::int total_count from audit_events a left join users u on u.id=a.actor_user_id where a.tenant_id=$1 and ($2::text is null or a.action=$2) order by a.created_at desc limit $3 offset $4`,[tenantId,query.action??null,query.limit,(query.page-1)*query.limit]);response.json({events:result.rows,total:result.rows[0]?.total_count??0,page:query.page});}catch(error){next(error);}});return router;};
