@@ -1,4 +1,4 @@
-FROM node:22-alpine AS base
+FROM node:25-alpine AS base
 ENV PNPM_HOME=/pnpm
 ENV PATH=$PNPM_HOME:$PATH
 RUN corepack enable
@@ -18,7 +18,7 @@ FROM development AS build
 RUN pnpm --filter @attendance/api... build
 RUN pnpm deploy --filter @attendance/api --prod /release
 
-FROM node:22-alpine AS production
+FROM node:25-alpine AS production
 ENV NODE_ENV=production
 WORKDIR /app
 COPY --from=build /release ./
